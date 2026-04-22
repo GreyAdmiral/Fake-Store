@@ -1,0 +1,45 @@
+.loader {
+   display: inline-block;
+   position: relative;
+   width: fit-content;
+   height: auto;
+   padding: f.rem(5px);
+   transition:
+      0.3s color,
+      0.3s border,
+      0.3s transform,
+      0.3s opacity;
+   @include m.adaptiveValue('font-size', 112px, 48px);
+}
+
+.spinner {
+   @include m.square(1em);
+   display: inline-block;
+   color: inherit;
+   vertical-align: middle;
+   pointer-events: none;
+   border: 0.2em solid transparent;
+   border-left-color: currentcolor;
+   border-right-color: currentcolor;
+   border-radius: 50%;
+   -webkit-animation: 1s loader linear infinite;
+   animation: 1s loader linear infinite;
+}
+
+@-webkit-keyframes loader {
+   0% {
+      transform: rotate(0deg);
+   }
+   100% {
+      transform: rotate(360deg);
+   }
+}
+
+@keyframes loader {
+   0% {
+      transform: rotate(0deg);
+   }
+   100% {
+      transform: rotate(360deg);
+   }
+}

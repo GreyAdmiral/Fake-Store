@@ -1,0 +1,10 @@
+.not-found {
+   @include m.flex(center);
+   @include m.square(100%);
+
+   &-message {
+      font-size: f.rem(24px);
+      font-weight: 600;
+      text-wrap: balance;
+   }
+}

@@ -1,0 +1,84 @@
+// Брейкпоинты
+@mixin lessbigdesktop {
+   @media (max-width: (1439.5px)) {
+      @content;
+   }
+}
+
+@mixin bigtablet {
+   @media (max-width: (1024.5px)) {
+      @content;
+   }
+}
+
+@mixin tablet {
+   @media (max-width: (991.5px)) {
+      @content;
+   }
+}
+
+@mixin smalltablet {
+   @media (max-width: (768.5px)) {
+      @content;
+   }
+}
+
+@mixin bigmobile {
+   @media (max-width: (576.5px)) {
+      @content;
+   }
+}
+
+@mixin mobile {
+   @media (max-width: (479.5px)) {
+      @content;
+   }
+}
+
+@mixin smallmobile {
+   @media (max-width: (414.5px)) {
+      @content;
+   }
+}
+
+@mixin oversmallmobile {
+   @media (min-width: (415px)) {
+      @content;
+   }
+}
+
+@mixin overmobile {
+   @media (min-width: (480px)) {
+      @content;
+   }
+}
+
+@mixin overbigmobile {
+   @media (min-width: (577px)) {
+      @content;
+   }
+}
+
+@mixin oversmalltablet {
+   @media (min-width: (769px)) {
+      @content;
+   }
+}
+
+@mixin overtablet {
+   @media (min-width: (992px)) {
+      @content;
+   }
+}
+
+@mixin desktop {
+   @media (min-width: (1025px)) {
+      @content;
+   }
+}
+
+@mixin bigdesktop {
+   @media (min-width: (1440px)) {
+      @content;
+   }
+}

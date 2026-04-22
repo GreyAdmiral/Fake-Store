@@ -1,0 +1,46 @@
+.header {
+   height: fit-content;
+
+   &-body {
+      padding: f.rem(10px);
+   }
+
+   &-title {
+      font-size: f.rem(36px);
+      font-weight: 600;
+      text-align: center;
+   }
+
+   &-link {
+      position: relative;
+      @include m.square(100%);
+      color: v.$black;
+      border-radius: f.rem(5px);
+
+      &::after {
+         content: '';
+         position: absolute;
+         bottom: 0;
+         left: 0;
+         width: 0;
+         height: 4px;
+         background-color: v.$black;
+         border-radius: f.rem(10px);
+         clip-path: polygon(0 2px, 100% 0, 100% 4px, 0 3px);
+         transition: width 0.4s ease 0s;
+         will-change: width;
+      }
+
+      @include m.hover {
+         &::after {
+            content: '';
+            width: 100%;
+         }
+      }
+
+      @include m.focused {
+         outline: 2px dashed v.$black;
+         outline-offset: 4px;
+      }
+   }
+}

@@ -1,0 +1,12 @@
+.footer {
+   height: fit-content;
+
+   &-body {
+      @include m.flex(center);
+      padding: f.rem(10px);
+   }
+
+   &-text {
+      font-size: f.rem(22px);
+   }
+}

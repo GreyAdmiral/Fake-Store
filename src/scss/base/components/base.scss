@@ -1,0 +1,35 @@
+@use '../../tools/functions' as f;
+@use '../../tools/mixins' as mix;
+@use '../../tools/vars' as vars;
+@use '../../tools/extends';
+
+html {
+   @extend %smoothscroll;
+   @include mix.thinScrollbar();
+   scrollbar-gutter: stable;
+}
+
+body {
+   background-color: vars.$paleYellow;
+}
+
+.wrapper {
+   @extend %layout;
+   min-height: 100%;
+   color: vars.$black;
+   line-height: 1.25;
+   letter-spacing: 1.5px;
+   font-family: 'NeuchaM', Arial, Helvetica, cursive;
+   overflow-x: clip;
+
+   // Фикс для слайдеров
+   > * {
+      min-width: 0;
+   }
+}
+
+// Блокировка прокрутки контента
+.lock {
+   overflow: hidden !important;
+   touch-action: none !important;
+}

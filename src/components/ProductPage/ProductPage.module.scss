@@ -1,0 +1,12 @@
+.product {
+   @include m.square(100%);
+   padding-block: f.rem(10px);
+
+   &-body {
+      @include m.square(100%);
+   }
+
+   &-centered {
+      @include m.flex(center);
+   }
+}

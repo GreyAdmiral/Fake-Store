@@ -1,0 +1,32 @@
+@use 'sass:math';
+
+@if (v.$responsiveType) {
+   // Отзывчивая верстка без брейк-поинтов
+   .container {
+      @include m.square(100%);
+      box-sizing: border-box;
+
+      @if (v.$containerWidth>0) {
+         max-width: f.rem(v.$containerWidth);
+         margin: 0 auto;
+      }
+
+      @if (v.$containerPadding>0) {
+         padding: 0 f.rem(math.div(v.$containerPadding, 2));
+      }
+   }
+} @else {
+   // Верстка адаптива вручную по брейк-поинтам
+   .container {
+      box-sizing: border-box;
+      margin: 0 auto;
+
+      @if (v.$containerWidth>0) {
+         max-width: f.rem(v.$containerWidth);
+      }
+
+      @if (v.$containerPadding>0) {
+         padding: 0 f.rem(math.div(v.$containerPadding, 2));
+      }
+   }
+}

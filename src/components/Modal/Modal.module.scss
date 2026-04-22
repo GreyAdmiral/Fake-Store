@@ -1,0 +1,63 @@
+.modal {
+   @include m.flex(center);
+   position: fixed;
+   inset: 0;
+   background-color: v.$paleYellowTransparent;
+   padding: f.rem(10px);
+   transition: all 0.3s ease-in-out 0s;
+   animation: modalOpacity 0.3s ease-in-out 0s 1 forwards;
+   z-index: 25;
+   cursor: pointer;
+
+   &-body {
+      @include m.thinScrollbar();
+      max-width: f.rem(700px);
+      max-height: 90vh;
+      padding: f.rem(18px);
+      color: v.$black;
+      background-color: v.$whiteYellow;
+      border-radius: f.rem(5px);
+      font-family: 'NeuchaM', Arial, Helvetica, cursive;
+      overscroll-behavior: none;
+      overflow-x: hidden;
+      overflow-y: auto;
+      cursor: auto;
+      animation: modalScale 0.3s ease-in-out 0s 1 forwards;
+      box-shadow:
+         0 2px 2px 0 v.$blackShadowSuperTransparent,
+         0 1px 5px 0 v.$blackShadowUltraTransparent,
+         0 3px 1px -2px v.$blackShadowSuperTransparent;
+
+      @include m.bigtablet {
+         max-width: 65%;
+      }
+
+      @include m.smalltablet {
+         max-width: 75%;
+      }
+
+      @include m.bigmobile {
+         max-width: 85%;
+      }
+   }
+}
+
+@keyframes modalScale {
+   from {
+      transform: scale(0);
+   }
+
+   to {
+      transform: scale(1);
+   }
+}
+
+@keyframes modalOpacity {
+   from {
+      opacity: 0;
+   }
+
+   to {
+      opacity: 1;
+   }
+}

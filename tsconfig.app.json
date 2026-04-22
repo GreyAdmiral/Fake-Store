@@ -1,0 +1,50 @@
+{
+   "compilerOptions": {
+      "composite": true,
+      "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+      "target": "ES2022",
+      "useDefineForClassFields": true,
+      "lib": ["ES2022", "DOM", "DOM.Iterable"],
+      "module": "ESNext",
+      "types": ["vite/client", "node"],
+      "skipLibCheck": true,
+      "rootDir": "src",
+      "sourceMap": true,
+
+      /* Bundler mode */
+      "moduleResolution": "bundler",
+      "allowImportingTsExtensions": true,
+      "verbatimModuleSyntax": true,
+      "moduleDetection": "force",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,
+      "jsx": "react-jsx",
+
+      /* Linting */
+      "strict": true,
+      "noImplicitAny": true,
+      "noUnusedLocals": false,
+      "noUnusedParameters": false,
+      "erasableSyntaxOnly": false,
+      "noFallthroughCasesInSwitch": true,
+      "strictPropertyInitialization": false,
+      "noUncheckedSideEffectImports": true,
+
+      /* Paths */
+      "baseUrl": ".",
+      "paths": {
+         "@/*": ["src/*"],
+         "@components/*": ["src/components/*"],
+         "@services/*": ["src/services/*"],
+         "@assets/*": ["src/assets/*"],
+         "@router/*": ["src/router/*"],
+         "@pages/*": ["src/pages/*"],
+         "@hooks/*": ["src/hooks/*"],
+         "@tools/*": ["src/tools/*"],
+         "@events/*": ["src/events/*"],
+         "@api/*": ["src/api/*"]
+      }
+   },
+   "include": ["src"]
+}

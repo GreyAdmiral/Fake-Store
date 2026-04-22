@@ -1,0 +1,64 @@
+@use '../../mixins' as m;
+@use '../../functions' as f;
+@use '../../vars' as v;
+
+%layout {
+   display: grid;
+   grid-auto-flow: column;
+   grid-template-rows: minmax(75px, auto) 1fr minmax(25px, auto);
+}
+
+%card {
+   background-color: v.$whiteYellow;
+   box-shadow: 0 4px 8px v.$brownBlackTransparent;
+   overflow: hidden;
+   @include m.shadowAnimate(v.$ultraBrownBlackTransparent);
+}
+
+%category {
+   @include m.iflex();
+   gap: f.rem(5px);
+}
+
+%filterLink {
+   position: relative;
+   display: inline-block;
+   width: fit-content;
+   color: v.$blue;
+   border-radius: f.rem(5px);
+   transition: color 0.4s ease 0s;
+
+   &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, v.$blueNullTransparent, v.$blueThirdTransparent 51%, v.$blueAlmostFullTransparent);
+      border-radius: f.rem(10px);
+      clip-path: polygon(0 1px, 100% 0, 100% 2px, 0 1px);
+      transition: width 0.4s ease 0s;
+      will-change: width;
+   }
+
+   @include m.hover {
+      &::after {
+         width: 100%;
+      }
+   }
+
+   @include m.focused {
+      outline: 2px dashed v.$blue;
+      outline-offset: 3px;
+   }
+}
+
+%colon {
+   &::after {
+      content: ':';
+      display: inline-block;
+      height: 100%;
+      margin-inline: f.rem(1px);
+   }
+}

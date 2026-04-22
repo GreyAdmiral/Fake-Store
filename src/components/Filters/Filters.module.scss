@@ -1,0 +1,37 @@
+.filters {
+   @include m.flex(flex-start, center);
+   flex-wrap: wrap;
+   gap: f.rem(10px);
+   padding: 0 f.rem(10px) f.rem(25px);
+   @include m.square(fit-content);
+
+   &-item {
+      @include m.square(fit-content);
+   }
+
+   &-link {
+      position: relative;
+      display: inline-block;
+      padding: f.rem(10px);
+      color: v.$black;
+      border-radius: f.rem(12px);
+      font-size: f.rem(18px);
+      text-align: center;
+      @extend %card;
+
+      @include m.focused {
+         &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px dashed v.$black;
+            border-radius: f.rem(12px);
+            z-index: 1;
+         }
+      }
+
+      &.active {
+         color: v.$orangeBrown;
+      }
+   }
+}
