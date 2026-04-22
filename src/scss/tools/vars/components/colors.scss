@@ -2,23 +2,9 @@
 
 $black: #000000;
 $white: #ffffff;
-$whiteLux: #e4e4e4;
-$grayLight: #e0e0e0;
-$aquaTurquoise: #88d6d6;
-$blueLight: #33cccc;
-$blueDark: #006363;
-$lineageColor: #009999;
-$lineageLight: #2ba9c0;
-$lineageLux: #0698a5;
-$brownRed: #4f4f4f;
-$blueLight: #009dff;
-$pink: #ff00de;
-$blackTransparent: rgba(0, 0, 0, 0.4);
-$blackUltraTransparent: rgba(0, 0, 0, 0.3);
 $blackShadowSuperTransparent: rgba(0, 0, 0, 0.2);
 $blackShadowUltraTransparent: rgba(0, 0, 0, 0.12);
 $blackShadowTransparent: rgba(0, 0, 0, 0.14);
-$lightBlackTransparent: rgba(5, 5, 5, 0.502);
 $brownBlackTransparent: rgba(186, 112, 36, 0.12);
 $ultraBrownBlackTransparent: rgba(186, 151, 36, 0.3);
 $paleYellow: #fff9c4;
@@ -29,29 +15,8 @@ $paleYellowTransparent: rgba(255, 249, 196, 0.9);
 $blueNullTransparent: rgba(1, 76, 140, 0);
 $blueThirdTransparent: rgba(1, 76, 140, 0.3);
 $blueAlmostFullTransparent: rgba(1, 76, 140, 0.85);
-$grey: #b0bec5;
 
 //==========================================Настройки===============================================//
 
 // Цвет текста по-умолчанию
 $defaultTextColor: $black;
-
-// Цвет бургера
-$burgerColor: $blueDark;
-
-// Цвет фона меню
-$menuBg: $lightBlackTransparent;
-
-// Цвет текста меню
-$menuText: $lineageColor;
-
-// Цвет фона мобильного меню
-$burgerMenuBg: $lineageLight;
-
-// Цвет рамки мобильного меню
-$burgerMenuBorder: $blueDark;
-
-// Цвет фона модальнеого окна
-$modalBg: $blackTransparent;
-$modalContentBg: $lightBlackTransparent;
-$modalBorder: $brownRed;
