@@ -1,14 +1,14 @@
 {
-  "name": "App",
-  "short_name": "App",
-  "description": "App",
+  "name": "Fake Store",
+  "short_name": "Fake Store",
+  "description": "This online store is a training project created for educational purposes.",
   "dir": "auto",
-  "lang": "ru",
+  "lang": "en",
   "display": "standalone",
   "orientation": "any",
   "start_url": "/?homescreen=1",
-  "background_color": "#D9D9D9",
-  "theme_color": "#D9D9D9",
+  "background_color": "#fff9c4",
+  "theme_color": "#fff9c4",
   "icons": [
     {
       "src": "/assets/android-chrome-36x36.png",
