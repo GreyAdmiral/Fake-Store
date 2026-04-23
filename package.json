@@ -24,7 +24,8 @@
       "react": "^19.2.3",
       "react-dom": "^19.2.3",
       "react-lazy-load-image-component": "^1.6.3",
-      "react-router": "^7.14.1"
+      "react-router": "^7.14.1",
+      "swr": "^2.4.1"
    },
    "devDependencies": {
       "@axelrindle/vite-plugin-favicon": "^0.2.0",
