@@ -67,13 +67,13 @@ export const prodConfig = {
          output: paths.public.assets,
          generatorOptions: {
             path: './assets',
-            appName: 'App',
-            appDescription: 'App',
+            appName: 'Fake Store',
+            appDescription: 'This online store is a training project created for educational purposes.',
             developerName: 'Binarion',
             developerURL: '', // prevent retrieving from the nearest package.json
-            lang: 'ru',
-            theme_color: '#D9D9D9',
-            background: '#D9D9D9',
+            lang: 'en',
+            theme_color: '#fff9c4',
+            background: '#fff9c4',
             icons: {
                favicons: true,
                appleIcon: true,
