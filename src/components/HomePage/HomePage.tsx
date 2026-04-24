@@ -6,21 +6,21 @@ import { Filters } from '@components/Filters/Filters';
 import { Loader } from '@components/Loader/Loader';
 import { NotFound } from '@components/NotFound/NotFound';
 import { Products } from '@components/Products/Products';
-// import { useFetch } from '@hooks/useFetch';
+import { useFetch } from '@hooks/useFetch';
 import { API_URL } from '@tools/constants';
 import { getCategories } from '@tools/getCategories';
-import { getData } from '@tools/getData';
+// import { getData } from '@tools/getData';
 import clsx from 'clsx';
-import useSWR from 'swr';
 
+// import useSWR from 'swr';
 import type { Product } from '@/types/types';
 
 import styles from './HomePage.module.scss';
 
 export function HomePage() {
    const defNotFoundMessage = 'Nothing found';
-   // const [data, isLoading, error] = useFetch<Product[]>(API_URL);
-   const { data, error, isLoading } = useSWR<Product[]>(API_URL, getData);
+   const [data, isLoading, error] = useFetch<Product[]>(API_URL);
+   // const { data, error, isLoading } = useSWR<Product[]>(API_URL, getData);
    const [searchParams] = useSearchParams();
    const category = searchParams.get('category');
    const products = category && data ? data.filter((product) => product.category === category) : data;
