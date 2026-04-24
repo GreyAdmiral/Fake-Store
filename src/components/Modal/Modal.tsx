@@ -63,15 +63,13 @@ export const Modal: FC<PropsWithChildren & ModalProps> = ({ isOpenModal, onClose
       if (isOpenModal) {
          document.body.append(modalRoot);
          document.body.addEventListener('keydown', keydownHandler);
-      }
 
-      return () => {
-         if (isOpenModal) {
+         return () => {
             modalRoot.remove();
             document.body.removeEventListener('keydown', keydownHandler);
-         }
-      };
-   });
+         };
+      }
+   }, [isOpenModal, keydownHandler, modalRoot]);
 
    if (!isOpenModal) return null;
 
