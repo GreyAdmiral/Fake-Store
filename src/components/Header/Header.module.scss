@@ -20,27 +20,28 @@
       &::after {
          content: '';
          position: absolute;
-         bottom: 0;
          left: 0;
-         width: 0;
-         height: 4px;
+         bottom: f.rem(-3px);
+         width: 100%;
+         height: f.rem(4px);
          background-color: v.$black;
          border-radius: f.rem(10px);
-         clip-path: polygon(0 2px, 100% 0, 100% 4px, 0 3px);
-         transition: width 0.4s ease 0s;
-         will-change: width;
+         clip-path: polygon(0 f.rem(2px), 100% 0, 100% f.rem(4px), 0 3px);
+         transform: scaleX(0);
+         transform-origin: right center;
+         transition: transform 0.4s ease 0s;
       }
 
       @include m.hover {
          &::after {
-            content: '';
-            width: 100%;
+            transform: scaleX(1);
+            transform-origin: left center;
          }
       }
 
       @include m.focused {
-         outline: 2px dashed v.$black;
-         outline-offset: 4px;
+         outline: f.rem(2px) dashed v.$black;
+         outline-offset: f.rem(4px);
       }
    }
 }

@@ -10,7 +10,7 @@
 
 %card {
    background-color: v.$whiteYellow;
-   box-shadow: 0 4px 8px v.$brownBlackTransparent;
+   box-shadow: 0 f.rem(4px) f.rem(8px) v.$brownBlackTransparent;
    overflow: hidden;
    @include m.shadowAnimate(v.$ultraBrownBlackTransparent);
 }
@@ -32,25 +32,27 @@
       content: '';
       position: absolute;
       left: 0;
-      bottom: -3px;
-      width: 0;
-      height: 2px;
+      bottom: f.rem(-3px);
+      width: 100%;
+      height: f.rem(2px);
       background: linear-gradient(to right, v.$blueNullTransparent, v.$blueThirdTransparent 51%, v.$blueAlmostFullTransparent);
       border-radius: f.rem(10px);
-      clip-path: polygon(0 1px, 100% 0, 100% 2px, 0 1px);
-      transition: width 0.4s ease 0s;
-      will-change: width;
+      clip-path: polygon(0 f.rem(1px), 100% 0, 100% f.rem(2px), 0 f.rem(1px));
+      transform: scaleX(0);
+      transform-origin: right center;
+      transition: transform 0.4s ease 0s;
    }
 
    @include m.hover {
       &::after {
-         width: 100%;
+         transform: scaleX(1);
+         transform-origin: left center;
       }
    }
 
    @include m.focused {
-      outline: 2px dashed v.$blue;
-      outline-offset: 3px;
+      outline: f.rem(2px) dashed v.$blue;
+      outline-offset: f.rem(3px);
    }
 }
 
