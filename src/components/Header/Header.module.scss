@@ -34,8 +34,8 @@
 
       @include m.hover {
          &::after {
-            transform: scaleX(1);
             transform-origin: left center;
+            transform: scaleX(1);
          }
       }
 

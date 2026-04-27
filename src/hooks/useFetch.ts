@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 
 export function useFetch<T>(url: string | URL | Request, init?: Omit<RequestInit, 'signal'>) {
    const [data, setData] = useState<T | null>(null);
-   const [isLoading, setIsloading] = useState<boolean>(false);
+   const [isLoading, setIsLoading] = useState<boolean>(false);
    const [error, setError] = useState<Error | null>(null);
 
    useEffect(() => {
       const controller = new AbortController();
       const fetchInit = { ...init, signal: controller.signal };
 
-      setIsloading(true);
+      setIsLoading(true);
       setError(null);
       setData(null);
 
@@ -59,7 +59,7 @@ export function useFetch<T>(url: string | URL | Request, init?: Omit<RequestInit
          })
          .finally(() => {
             if (!controller.signal.aborted) {
-               setIsloading(false);
+               setIsLoading(false);
             }
          });
 
