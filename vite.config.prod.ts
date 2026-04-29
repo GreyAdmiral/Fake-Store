@@ -66,7 +66,7 @@ export const prodConfig = {
          source: paths.src.favIcon,
          output: paths.public.assets,
          generatorOptions: {
-            path: './assets',
+            path: './Fake-Store/assets',
             appName: 'Fake Store',
             appDescription: 'This online store is a training project created for educational purposes.',
             developerName: 'Binarion',
