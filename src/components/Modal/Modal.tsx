@@ -9,6 +9,8 @@ import styles from './Modal.module.scss';
 import type { ModalProps } from './types';
 
 const modalCloseKeysCodes = ['Escape'];
+const lockKeysCodes = ['Home', 'End'];
+const lockPageKeysCodes = ['PageUp', 'PageDown'];
 
 export const Modal: FC<PropsWithChildren & ModalProps> = ({ isOpenModal, onClose, children, ...props }) => {
    const modalRef = useRef(null);
@@ -27,13 +29,64 @@ export const Modal: FC<PropsWithChildren & ModalProps> = ({ isOpenModal, onClose
             onClose();
          }
 
+         if (lockPageKeysCodes.includes(e.code)) {
+            const modal = modalRef.current as HTMLElement | null;
+
+            if (modal) {
+               e.preventDefault();
+
+               switch (e.key) {
+                  case 'PageUp':
+                     modal.scrollBy({ top: -modal.clientHeight, behavior: 'smooth' });
+                     break;
+
+                  case 'PageDown':
+                     modal.scrollBy({ top: modal.clientHeight, behavior: 'smooth' });
+                     break;
+
+                  default:
+                     break;
+               }
+            }
+         }
+
+         if (lockKeysCodes.includes(e.code)) {
+            const modal = modalRef.current as HTMLElement | null;
+            const target = e.target as HTMLElement;
+            const isTextField =
+               target.matches('input[type="text"]') ||
+               target.matches('input[type="email"]') ||
+               target.matches('input[type="password"]') ||
+               target.matches('input[type="search"]') ||
+               target.matches('input[type="tel"]') ||
+               target.matches('input[type="url"]') ||
+               target.matches('textarea');
+
+            if (modal && !isTextField) {
+               e.preventDefault();
+
+               switch (e.key) {
+                  case 'Home':
+                     modal.scrollTo({ top: 0, behavior: 'smooth' });
+                     break;
+
+                  case 'End':
+                     modal.scrollTo({ top: modal.scrollHeight, behavior: 'smooth' });
+                     break;
+
+                  default:
+                     break;
+               }
+            }
+         }
+
          if (e.key === 'Tab') {
             const modal = modalRef.current as HTMLElement | null;
 
             if (modal) {
                const { shiftKey } = e;
                const focusableElements = modal.querySelectorAll(
-                  ':scope button, :scope [href], :scope input, :scope select, :scope textarea, :scope [tabindex]:not([tabindex="-1"])'
+                  ':scope button:not(:disabled), :scope [href], :scope input:not(:disabled), :scope select:not(:disabled), :scope textarea:not(:disabled), :scope [tabindex]:not([tabindex="-1"])'
                );
 
                const firstElement = focusableElements[0] as HTMLElement;
