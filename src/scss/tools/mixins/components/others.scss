@@ -182,9 +182,17 @@
    }
 }
 
-// Тонкий скроллбар
-@mixin thinScrollbar() {
+// Кастомный мини-скроллбар
+@mixin miniScrollbar($thumbColor: null, $trackColor: null) {
    @supports (scrollbar-width: auto) {
       scrollbar-width: thin;
+
+      @if $thumbColor != null and $trackColor != null {
+         scrollbar-color: $thumbColor $trackColor;
+      }
+
+      &:hover {
+         --safari-fix: ;
+      }
    }
 }

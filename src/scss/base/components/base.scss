@@ -5,7 +5,7 @@
 
 html {
    @extend %smoothscroll;
-   @include mix.thinScrollbar();
+   @include mix.miniScrollbar(vars.$orangeBrown, vars.$whiteYellow);
    scrollbar-gutter: stable;
 }
 
