@@ -41,6 +41,9 @@ typings/
 *.sw?
 *.pem
 
+# Neural network settings files
+/.gigacode
+
 # dotenv environment variable files
 .env
 .env.test
