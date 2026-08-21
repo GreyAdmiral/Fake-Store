@@ -11,6 +11,8 @@ import type { ModalProps } from './types';
 const modalCloseKeysCodes = ['Escape'];
 const lockKeysCodes = ['Home', 'End'];
 const lockPageKeysCodes = ['PageUp', 'PageDown'];
+const focusableElementsSelector =
+   ':scope button:not(:disabled), :scope [href], :scope input:not(:disabled), :scope select:not(:disabled), :scope textarea:not(:disabled), :scope [tabindex]:not([tabindex="-1"])';
 
 export const Modal: FC<PropsWithChildren & ModalProps> = ({ isOpenModal, onClose, children, ...props }) => {
    const modalRef = useRef(null);
@@ -85,10 +87,7 @@ export const Modal: FC<PropsWithChildren & ModalProps> = ({ isOpenModal, onClose
 
             if (modal) {
                const { shiftKey } = e;
-               const focusableElements = modal.querySelectorAll(
-                  ':scope button:not(:disabled), :scope [href], :scope input:not(:disabled), :scope select:not(:disabled), :scope textarea:not(:disabled), :scope [tabindex]:not([tabindex="-1"])'
-               );
-
+               const focusableElements = modal.querySelectorAll(focusableElementsSelector);
                const firstElement = focusableElements[0] as HTMLElement;
                const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
                const isFocusInModal = document.activeElement?.closest(`div.${styles.modalBody}`);
@@ -99,7 +98,7 @@ export const Modal: FC<PropsWithChildren & ModalProps> = ({ isOpenModal, onClose
                } else if (shiftKey && document.activeElement === firstElement) {
                   e.preventDefault();
                   lastElement?.focus();
-               } else if (!e.shiftKey && document.activeElement === lastElement) {
+               } else if (!shiftKey && document.activeElement === lastElement) {
                   e.preventDefault();
                   firstElement?.focus();
                }
