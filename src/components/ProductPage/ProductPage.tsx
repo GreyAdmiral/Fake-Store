@@ -22,6 +22,10 @@ export function ProductPage() {
    const isEmptyProducts = !isLoading && product && Object.keys(product).length === 0;
    const defNotFoundMessage = 'No data';
 
+   if (error) {
+      console.error(error.message);
+   }
+
    return (
       <div className={styles.product}>
          <Container>

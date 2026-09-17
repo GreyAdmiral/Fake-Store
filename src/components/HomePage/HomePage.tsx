@@ -28,6 +28,10 @@ export function HomePage() {
    const filters = data ? getCategories(data) : null;
    const isFilters = filters && products && Boolean(products.length);
 
+   if (error) {
+      console.error(error.message);
+   }
+
    return (
       <div className={styles.products}>
          <Container>

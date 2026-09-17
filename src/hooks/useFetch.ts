@@ -1,46 +1,50 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-export function useFetch<T>(url: string | URL | Request, init?: Omit<RequestInit, 'signal'>) {
+interface InitProp extends Omit<RequestInit, 'signal'> {
+   clearingData?: boolean;
+}
+
+const CONTENT_TYPE_KEY = 'Content-Type';
+const JSON_MIME = 'application/json';
+
+export function useFetch<T>(url: string | URL | Request, init?: InitProp) {
    const [data, setData] = useState<T | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
    const [error, setError] = useState<Error | null>(null);
+   const [reloadKey, setReloadKey] = useState<number>(0);
+   const initRef = useRef<InitProp>(init);
+   const refetch = useCallback(() => {
+      setReloadKey((key) => key + 1);
+   }, []);
+
+   initRef.current = init;
 
    useEffect(() => {
       const controller = new AbortController();
-      const fetchInit = { ...init, signal: controller.signal };
+      const currentInit = initRef.current;
+      const { clearingData = true, ...requestInit } = currentInit ?? {};
 
       setIsLoading(true);
       setError(null);
-      setData(null);
+      if (clearingData) setData(null);
 
-      fetch(url, fetchInit)
+      fetch(url, { ...requestInit, signal: controller.signal })
          .then(async (res: Response) => {
-            const contentTypeKey = 'Content-Type';
-            const jsonTypeMark = 'application/json';
-            const isJson = res.headers.get(contentTypeKey)?.includes(jsonTypeMark);
+            const isJson = res.headers.get(CONTENT_TYPE_KEY)?.includes(JSON_MIME);
+            let errorMessage = 'Fetch error!';
 
             if (!res.ok) {
-               let message = `HTTP ${res.status}: Fetch error!`;
+               if (!isJson) throw new Error(`HTTP ${res.status}: ${errorMessage}`);
 
-               if (isJson) {
-                  try {
-                     const errorData = await res.json();
+               const errorData = await res.json().catch((err) => ({ message: err.message }));
+               if (errorData.message || res.statusText) errorMessage = errorData.message || res.statusText;
 
-                     if (errorData.message) {
-                        message = `HTTP ${res.status}: ${errorData.message}.`;
-                     } else if (res.statusText) {
-                        message = `HTTP ${res.status}: ${res.statusText}.`;
-                     }
-                  } catch (_err) {
-                     if (res.statusText) message = `HTTP ${res.status}: ${res.statusText}.`;
-                  }
-               }
-
+               const message = `HTTP ${res.status}: ${errorMessage}`;
                throw new Error(message);
             }
 
             if (!isJson) {
-               const errMessage = 'HTTP 400: Invalid content type. Expected JSON.';
+               const errMessage = `HTTP ${res.status}: Invalid content type. Expected JSON.`;
                throw new Error(errMessage);
             }
 
@@ -53,7 +57,6 @@ export function useFetch<T>(url: string | URL | Request, init?: Omit<RequestInit
          })
          .catch((err: Error) => {
             if (err.name !== 'AbortError') {
-               console.error(err.message);
                setError(err);
             }
          })
@@ -64,7 +67,7 @@ export function useFetch<T>(url: string | URL | Request, init?: Omit<RequestInit
          });
 
       return () => controller.abort();
-   }, [init, url]);
+   }, [reloadKey, url]);
 
-   return [data, isLoading, error] as const;
+   return [data, isLoading, error, refetch] as const;
 }
