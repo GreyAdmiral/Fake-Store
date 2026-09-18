@@ -4,13 +4,17 @@ interface InitProp extends Omit<RequestInit, 'signal'> {
    clearingData?: boolean;
 }
 
+interface ErrorRequest extends Error {
+   status?: number;
+}
+
 const CONTENT_TYPE_KEY = 'Content-Type';
 const JSON_MIME = 'application/json';
 
 export function useFetch<T>(url: string | URL | Request, init?: InitProp) {
    const [data, setData] = useState<T | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
-   const [error, setError] = useState<Error | null>(null);
+   const [error, setError] = useState<ErrorRequest | null>(null);
    const [reloadKey, setReloadKey] = useState<number>(0);
    const initRef = useRef<InitProp>(init);
    const refetch = useCallback(() => {
@@ -31,21 +35,17 @@ export function useFetch<T>(url: string | URL | Request, init?: InitProp) {
       fetch(url, { ...requestInit, signal: controller.signal })
          .then(async (res: Response) => {
             const isJson = res.headers.get(CONTENT_TYPE_KEY)?.includes(JSON_MIME);
-            let errorMessage = 'Fetch error!';
 
             if (!res.ok) {
-               if (!isJson) throw new Error(`HTTP ${res.status}: ${errorMessage}`);
+               const errorData = await res.json().catch(() => ({}));
+               const error = new Error(errorData.message || res.statusText || `Fetch error! (${res.status})`);
 
-               const errorData = await res.json().catch((err) => ({ message: err.message }));
-               if (errorData.message || res.statusText) errorMessage = errorData.message || res.statusText;
-
-               const message = `HTTP ${res.status}: ${errorMessage}`;
-               throw new Error(message);
+               ((<unknown>error) as ErrorRequest).status = res.status;
+               throw error;
             }
 
             if (!isJson) {
-               const errMessage = `HTTP ${res.status}: Invalid content type. Expected JSON.`;
-               throw new Error(errMessage);
+               throw new Error('Invalid content type. Expected JSON.');
             }
 
             return res.json();
