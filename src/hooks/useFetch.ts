@@ -8,9 +8,6 @@ interface ErrorRequest extends Error {
    status?: number;
 }
 
-const CONTENT_TYPE_KEY = 'Content-Type';
-const JSON_MIME = 'application/json';
-
 export function useFetch<T>(url: string | URL | Request, init?: InitProp) {
    const [data, setData] = useState<T | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -23,7 +20,10 @@ export function useFetch<T>(url: string | URL | Request, init?: InitProp) {
 
    initRef.current = init;
 
+   // biome-ignore lint/correctness/useExhaustiveDependencies: <Dependency required for update>
    useEffect(() => {
+      const contentTypeKey = 'Content-Type';
+      const jsonMime = 'application/json';
       const controller = new AbortController();
       const currentInit = initRef.current;
       const { clearingData = true, ...requestInit } = currentInit ?? {};
@@ -34,7 +34,7 @@ export function useFetch<T>(url: string | URL | Request, init?: InitProp) {
 
       fetch(url, { ...requestInit, signal: controller.signal })
          .then(async (res: Response) => {
-            const isJson = res.headers.get(CONTENT_TYPE_KEY)?.includes(JSON_MIME);
+            const isJson = res.headers.get(contentTypeKey)?.includes(jsonMime);
 
             if (!res.ok) {
                const errorData = await res.json().catch(() => ({}));

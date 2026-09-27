@@ -6,24 +6,24 @@ import clsx from 'clsx';
 import styles from './Filters.module.scss';
 import type { Props } from './types';
 
+const ALL_CATEGORIES = {
+   id: 0,
+   name: 'all products',
+   ariaLabel: 'All products',
+};
+
 export function Filters({ categories, activeCategory }: Props) {
    if (!categories || !categories.length) return null;
 
-   const allCategories = {
-      id: 0,
-      name: 'all products',
-      ariaLabel: 'All products',
-   };
-
    return (
       <ul className={styles.filters}>
-         <li key={allCategories.id} className={styles.filtersItem}>
+         <li key={ALL_CATEGORIES.id} className={styles.filtersItem}>
             <Link
                to={AppRoutes.HOME_ROUTE}
                className={clsx(styles.filtersLink, { [styles.active]: !activeCategory })}
-               aria-label={allCategories.ariaLabel}
+               aria-label={ALL_CATEGORIES.ariaLabel}
             >
-               {allCategories.name}
+               {ALL_CATEGORIES.name}
             </Link>
          </li>
 

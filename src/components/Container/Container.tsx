@@ -1,8 +1,8 @@
-import type { FC, PropsWithChildren } from 'react';
+import type { FC, HTMLAttributes } from 'react';
 
 import styles from './Container.module.scss';
-import type { ContainerProps } from './types';
 
-export const Container: FC<PropsWithChildren & ContainerProps> = ({ children, className }) => {
-   return <div className={className ? `${styles.container} ${className}` : styles.container}>{children}</div>;
+export const Container: FC<HTMLAttributes<HTMLDivElement>> = ({ children, className }) => {
+   const classNameString = className ? `${styles.container} ${className}` : styles.container;
+   return <div className={classNameString}>{children}</div>;
 };

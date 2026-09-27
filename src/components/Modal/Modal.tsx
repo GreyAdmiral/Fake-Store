@@ -6,13 +6,15 @@ import { useClickOutside } from '@hooks/useClickOutside';
 import { useLockScroll } from '@hooks/useLockScroll';
 
 import styles from './Modal.module.scss';
-import type { ModalProps } from './types';
 
-const modalCloseKeysCodes = ['Escape'];
-const lockKeysCodes = ['Home', 'End'];
-const lockPageKeysCodes = ['PageUp', 'PageDown'];
-const focusableElementsSelector =
-   ':scope button:not(:disabled), :scope [href], :scope input:not(:disabled), :scope select:not(:disabled), :scope textarea:not(:disabled), :scope [tabindex]:not([tabindex="-1"])';
+interface ModalProps {
+   isOpenModal: boolean;
+   onClose: () => void;
+}
+
+const MODAL_CLOSE_KEYS_CODES = ['Escape'];
+const LOCK_KEYS_CODES = ['Home', 'End'];
+const LOCK_PAGE_KEYS_CODES = ['PageUp', 'PageDown'];
 
 export const Modal: FC<PropsWithChildren & ModalProps> = ({ isOpenModal, onClose, children, ...props }) => {
    const modalRef = useRef(null);
@@ -27,11 +29,11 @@ export const Modal: FC<PropsWithChildren & ModalProps> = ({ isOpenModal, onClose
       (e: KeyboardEvent) => {
          e.stopPropagation();
 
-         if (modalCloseKeysCodes.includes(e.code)) {
+         if (MODAL_CLOSE_KEYS_CODES.includes(e.code)) {
             onClose();
          }
 
-         if (lockPageKeysCodes.includes(e.code)) {
+         if (LOCK_PAGE_KEYS_CODES.includes(e.code)) {
             const modal = modalRef.current as HTMLElement | null;
 
             if (modal) {
@@ -52,7 +54,7 @@ export const Modal: FC<PropsWithChildren & ModalProps> = ({ isOpenModal, onClose
             }
          }
 
-         if (lockKeysCodes.includes(e.code)) {
+         if (LOCK_KEYS_CODES.includes(e.code)) {
             const modal = modalRef.current as HTMLElement | null;
             const target = e.target as HTMLElement;
             const isTextField =
@@ -87,7 +89,10 @@ export const Modal: FC<PropsWithChildren & ModalProps> = ({ isOpenModal, onClose
 
             if (modal) {
                const { shiftKey } = e;
-               const focusableElements = modal.querySelectorAll(focusableElementsSelector);
+               const focusableElements = modal.querySelectorAll(
+                  ':scope button:not(:disabled), :scope [href], :scope input:not(:disabled), :scope select:not(:disabled), :scope textarea:not(:disabled), :scope [tabindex]:not([tabindex="-1"])'
+               );
+
                const firstElement = focusableElements[0] as HTMLElement;
                const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
                const isFocusInModal = document.activeElement?.closest(`div.${styles.modalBody}`);
