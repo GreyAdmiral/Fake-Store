@@ -1,6 +1,6 @@
-import { Container } from '@components/Container/Container';
+import { Container } from '@components/Container';
 
-import styles from './Footer.module.scss';
+import styles from './styles.module.scss';
 
 export function Footer() {
    const year = new Date().getFullYear();

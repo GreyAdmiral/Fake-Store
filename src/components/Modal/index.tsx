@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import { useClickOutside } from '@hooks/useClickOutside';
 import { useLockScroll } from '@hooks/useLockScroll';
 
-import styles from './Modal.module.scss';
+import styles from './styles.module.scss';
 
 interface ModalProps {
    isOpenModal: boolean;

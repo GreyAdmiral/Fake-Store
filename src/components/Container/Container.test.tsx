@@ -1,9 +1,9 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, test, vi } from 'vitest';
 
-import { Container } from './Container';
+import { Container } from '.';
 
-vi.mock('./Container.module.scss', () => ({
+vi.mock('./styles.module.scss', () => ({
    default: {
       container: 'container',
    },

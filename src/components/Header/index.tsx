@@ -1,10 +1,10 @@
 import { Link } from 'react-router';
 
-import { Container } from '@components/Container/Container';
+import { Container } from '@components/Container';
 import { AppRoutes } from '@router/routes';
 import { APP_TITLE } from '@tools/constants';
 
-import styles from './Header.module.scss';
+import styles from './styles.module.scss';
 
 export function Header() {
    return (

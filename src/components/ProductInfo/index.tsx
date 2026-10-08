@@ -2,12 +2,12 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router';
 
 import imgPlaceholder from '@assets/images/cup-img-paceholder.svg';
-import { BuyDialog } from '@components/BuyDialog/BuyDialog';
+import { BuyDialog } from '@components/BuyDialog';
 import { AppRoutes } from '@router/routes';
 import { APP_TITLE } from '@tools/constants';
 import clsx from 'clsx';
 
-import styles from './ProductInfo.module.scss';
+import styles from './styles.module.scss';
 import type { Props } from './types';
 
 export function ProductInfo({ product }: Props) {

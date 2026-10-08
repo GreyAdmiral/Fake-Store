@@ -1,11 +1,11 @@
 import { useSearchParams } from 'react-router';
 
-import { Container } from '@components/Container/Container';
+import { Container } from '@components/Container';
 import { ErrorComponent } from '@components/ErrorBoundary/ErrorComponent';
-import { Filters } from '@components/Filters/Filters';
-import { Loader } from '@components/Loader/Loader';
-import { NotFound } from '@components/NotFound/NotFound';
-import { Products } from '@components/Products/Products';
+import { Filters } from '@components/Filters';
+import { Loader } from '@components/Loader';
+import { NotFound } from '@components/NotFound';
+import { Products } from '@components/Products';
 import { useFetch } from '@hooks/useFetch';
 import { API_URL } from '@tools/constants';
 import { getCategories } from '@tools/getCategories';
@@ -15,7 +15,7 @@ import clsx from 'clsx';
 // import useSWR from 'swr';
 import type { Product } from '@/types/types';
 
-import styles from './HomePage.module.scss';
+import styles from './styles.module.scss';
 
 export function HomePage() {
    const defNotFoundMessage = 'Nothing found';

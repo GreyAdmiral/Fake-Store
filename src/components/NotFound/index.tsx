@@ -1,4 +1,4 @@
-import styles from './NotFound.module.scss';
+import styles from './styles.module.scss';
 import type { Props } from './types';
 
 export function NotFound({ message }: Props) {

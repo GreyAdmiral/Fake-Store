@@ -1,7 +1,7 @@
-import { ProductCard } from '@components/ProductCard/ProductCard';
+import { ProductCard } from '@components/ProductCard';
 import { APP_TITLE } from '@tools/constants';
 
-import styles from './Products.module.scss';
+import styles from './styles.module.scss';
 import type { Props } from './types';
 
 export function Products({ products }: Props) {

@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { AppRoutes } from '@router/routes';
 import clsx from 'clsx';
 
-import styles from './Filters.module.scss';
+import styles from './styles.module.scss';
 import type { Props } from './types';
 
 const ALL_CATEGORIES = {

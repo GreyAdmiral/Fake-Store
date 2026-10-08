@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import imgPlaceholder from '@assets/images/cup-img-paceholder.svg';
 import clsx from 'clsx';
 
-import styles from './ProductCard.module.scss';
+import styles from './styles.module.scss';
 import type { Props } from './types';
 
 export function ProductCard({ product }: Props) {

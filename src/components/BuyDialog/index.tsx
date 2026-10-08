@@ -1,9 +1,9 @@
 import { type MouseEventHandler, useState } from 'react';
 
 import { BuyDialogContent } from '@components/BuyDialog/BuyDialogContent';
-import { Modal } from '@components/Modal/Modal';
+import { Modal } from '@components/Modal';
 
-import styles from './BuyDialog.module.scss';
+import styles from './styles.module.scss';
 
 export function BuyDialog() {
    const [isOpenModal, setIsOpenModal] = useState<boolean>(false);

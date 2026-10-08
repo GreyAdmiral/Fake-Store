@@ -1,9 +1,9 @@
 import { cleanup, render } from '@testing-library/react';
 import { afterEach, describe, expect, test, vi } from 'vitest';
 
-import { Loader } from './Loader';
+import { Loader } from '.';
 
-vi.mock('./Loader.module.scss', () => ({
+vi.mock('./styles.module.scss', () => ({
    default: {
       loader: 'loader',
       spinner: 'spinner',

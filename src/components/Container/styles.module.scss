@@ -1,0 +1,15 @@
+@use 'sass:math';
+
+.container {
+   @include m.square(100%);
+   box-sizing: border-box;
+
+   @if (v.$containerWidth>0) {
+      max-width: f.rem(v.$containerWidth);
+      margin: 0 auto;
+   }
+
+   @if (v.$containerPadding>0) {
+      padding: 0 f.rem(math.div(v.$containerPadding, 2));
+   }
+}

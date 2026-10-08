@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, test, vi } from 'vitest';
 
-import { Modal } from './Modal';
+import { Modal } from '.';
 
 describe('Тесты модального окна', () => {
    afterEach(cleanup);

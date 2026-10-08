@@ -1,19 +1,19 @@
 import { useParams } from 'react-router';
 
-import { Container } from '@components/Container/Container';
+import { Container } from '@components/Container';
 import { ErrorComponent } from '@components/ErrorBoundary/ErrorComponent';
-import { Loader } from '@components/Loader/Loader';
-import { NotFound } from '@components/NotFound/NotFound';
+import { Loader } from '@components/Loader';
+import { NotFound } from '@components/NotFound';
+// import useSWR from 'swr';
+import { ProductInfo } from '@components/ProductInfo';
 import { useFetch } from '@hooks/useFetch';
 import { API_URL } from '@tools/constants';
 // import { getData } from '@tools/getData';
 import clsx from 'clsx';
 
-// import useSWR from 'swr';
-import { ProductInfo } from '@/components/ProductInfo/ProductInfo';
 import type { Product } from '@/types/types';
 
-import styles from './ProductPage.module.scss';
+import styles from './styles.module.scss';
 
 export function ProductPage() {
    const { id } = useParams();

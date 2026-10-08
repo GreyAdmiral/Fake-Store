@@ -1,11 +1,10 @@
 import { Route, Routes } from 'react-router';
 
-import { Layout } from '@components/Layout/Layout';
-import { NotFound } from '@components/NotFound/NotFound';
+import { HomePage } from '@components/HomePage';
+import { Layout } from '@components/Layout';
+import { NotFound } from '@components/NotFound';
+import { ProductPage } from '@components/ProductPage';
 import { AppRoutes } from '@router/routes';
-
-import { HomePage } from '@/components/HomePage/HomePage';
-import { ProductPage } from '@/components/ProductPage/ProductPage';
 
 export function Router() {
    return (
