@@ -32,18 +32,19 @@
       "noUncheckedSideEffectImports": true,
 
       /* Paths */
-      "baseUrl": ".",
+      // "baseUrl": "./*",
       "paths": {
-         "@/*": ["src/*"],
-         "@components/*": ["src/components/*"],
-         "@services/*": ["src/services/*"],
-         "@assets/*": ["src/assets/*"],
-         "@router/*": ["src/router/*"],
-         "@pages/*": ["src/pages/*"],
-         "@hooks/*": ["src/hooks/*"],
-         "@tools/*": ["src/tools/*"],
-         "@events/*": ["src/events/*"],
-         "@api/*": ["src/api/*"]
+         "*": ["./*"],
+         "@/*": ["./src/*"],
+         "@components/*": ["./src/components/*"],
+         "@services/*": ["./src/services/*"],
+         "@assets/*": ["./src/assets/*"],
+         "@router/*": ["./src/router/*"],
+         "@pages/*": ["./src/pages/*"],
+         "@hooks/*": ["./src/hooks/*"],
+         "@tools/*": ["./src/tools/*"],
+         "@events/*": ["./src/events/*"],
+         "@api/*": ["./src/api/*"]
       }
    },
    "include": ["src"]
